@@ -34,7 +34,7 @@ li a {
 }
 
 /* Change the link color on hover */
-li a:focus {
+li a:hover, a:active {
     background-color: #555;
     color: white;
 }
