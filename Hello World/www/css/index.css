@@ -16,21 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+html {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
 
+body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
 
 ul {
+    padding: 0px;
+    margin: 0px;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    text-align: center;
+    display: table;
+    table-layout: fixed;
     width: 30%;
     height: 100%;
     background-color: #f1f1f1;
 }
 
 li a {
-    display: block;
+    display: table-cell;
+    height: auto;
     color: #000;
-    padding: 8px 16px;
     text-decoration: none;
 }
 
