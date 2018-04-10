@@ -43,16 +43,44 @@
 </head>
 
 <body>
-    <ul id="nav">
-        <li><a>Option1</a></li>
-        <li><a>Option2</a></li>
-        <li><a>Option3</a></li>
-        <li><a>Option4</a></li>
-        <li><a>Option5</a></li>
-        <li><a>Option6</a></li>
-    </ul>
+    <script src="http://192.168.0.241:8080/target/target-script-min.js#anonymous"></script>
+    <script type="text/javascript">
+        function easyFunction() {
+            alert('easy function called');
+        }
+        function collapseMenu() {
+            alert('collapseMenu called');
+            $('#left').animate({
+                width: = $(window).width() / 20.0
+            });
+        }
+    </script>
+
+    <div id="left" class="left" style="background-color: #f1f1f1;">
+        <div style="height:5%;">
+            <img style="float:right; max-width:100%; max-height:100%;" src="./img/left.png" ontouchend="easyFunction();"></img>
+        </div>
+        <ul id="nav" style="height:95%;">
+            <li><div class="navDiv">Option1</div></li>
+            <li><div class="navDiv">Option2</div></li>
+            <li><div class="navDiv">Option3</div></li>
+            <li><div class="navDiv">Option4</div></li>
+            <li><div class="navDiv">Option5</div></li>
+            <li><div class="navDiv">Option6</div></li>
+        </ul>
+    </div>
     
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script>
+        $(function(){
+      $("#includedContent").load("embedded.html"); 
+    });
+    </script> 
+
+    <div id="includedContent" class="right">
+    </div>
+
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();

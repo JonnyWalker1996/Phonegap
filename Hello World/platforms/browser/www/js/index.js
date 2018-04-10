@@ -21,6 +21,13 @@ var app = {
     initialize: function() {
         this.bindEvents();
     },
+
+    collapseMenu: function() {
+        alert('collapseMenu called');
+        $('#left').animate({
+            width: = $(window).width() / 20.0
+        });
+    },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -37,7 +44,9 @@ var app = {
         var i;
         alert("listElements.length = " + listElements.length);
         for (i = 0; i < listElements.length; i++) {
-            listElements[i].setAttribute("style", "padding-top: " + (100.0 / listElements.length * 4) + "%;");
+            listElements[i].setAttribute("style", "height: " + (100.0 / listElements.length) + "%;");
+            var div = listElements[i].children[0];
+            div.setAttribute("style", "line-height: " + div.style.height + ";");
         }
     }
 };

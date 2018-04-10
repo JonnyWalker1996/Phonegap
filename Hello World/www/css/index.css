@@ -33,23 +33,54 @@ ul {
     padding: 0px;
     margin: 0px;
     list-style-type: none;
-    text-align: center;
     display: table;
-    table-layout: fixed;
-    width: 30%;
     height: 100%;
+    width: 100%;
     background-color: #f1f1f1;
 }
 
-li a {
-    display: table-cell;
-    height: auto;
-    color: #000;
-    text-decoration: none;
+*
+{
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
 
-/* Change the link color on hover */
-li a:hover, a:active {
+.left {
+    float: left;
+    width:30%;
+    height: 100%;
+    display: inline-block;
+}
+
+.navDiv {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.navDiv:active {
     background-color: #555;
     color: white;
+
+}
+
+.right {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    width: 70%;
+    height: 100%;
+}
+
+.right:active {
+    background-color: black;
+}
+
+li {
+    display: table-row;
+    padding: 0px;
+    margin: 0px;
 }
