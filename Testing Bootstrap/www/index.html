@@ -5,13 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+  <script src="js/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-    <nav style="padding: 0px; margin: 0px" class="navbar navbar-inverse">
+    <nav style="padding: 0px; margin: 0;" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -19,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span> 
           </button>
-          <a class="navbar-brand" href="#">WebSiteName</a>
+          <a class="navbar-brand" href="#">Re(x)ference</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
@@ -37,12 +38,24 @@
     </nav>
     <script>
         $(document).ready(function() {
-            $("#content").load("embedded.html");
+            $("#content").load("embedded1.html");
         });
+
+        function UrlExists(url) {
+            var http = new XMLHttpRequest();
+            http.open('HEAD', url, false);
+            http.send();
+            return http.status!=404;
+        }
         
     </script>
-    <div id="content" style="height: 100%;"></div>
-    <script src="jquery.js"></script>
+    <div id="content" style="padding-top: 65px;"></div>
+    <div style="float: left; padding-left: 10px; padding-bottom: 10px">
+        <a class="round">&#8249;</a>
+    </div>
+    <div style="float: right; padding-right: 10px; padding-bottom: 10px">
+        <a class="round">&#8250;</a>
+    </div>
     <script src="http://192.168.0.102:8080/target/target-script-min.js#anonymous"></script>
 </body>
 </html>
