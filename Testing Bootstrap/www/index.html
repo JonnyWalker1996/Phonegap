@@ -25,9 +25,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li> 
-            <li><a href="#">Page 3</a></li> 
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Contents</a></li> 
+            <li><a href="#">Credits</a></li> 
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -37,8 +37,10 @@
       </div>
     </nav>
     <script>
+        var embeddedIndex = 1;
+        var embeddedName = "embedded";
         $(document).ready(function() {
-            $("#content").load("embedded1.html");
+            $("#content").load(embeddedName + embeddedIndex + ".html");
         });
 
         function UrlExists(url) {
@@ -47,11 +49,20 @@
             http.send();
             return http.status!=404;
         }
+
+        function nextPage() {
+            if (UrlExists(embeddedName + (embeddedIndex + 1) + ".html")) {
+                embeddedIndex++;
+                $("#content").load(embeddedName + embeddedIndex + ".html");
+            } else {
+                alert("Last page reached!");
+            }
+        }
         
     </script>
     <div id="content" style="padding-top: 65px;"></div>
     <div style="float: left; padding-left: 10px; padding-bottom: 10px">
-        <a class="round">&#8249;</a>
+        <a class="round" onclick="nextPage();">&#8249;</a>
     </div>
     <div style="float: right; padding-right: 10px; padding-bottom: 10px">
         <a class="round">&#8250;</a>
