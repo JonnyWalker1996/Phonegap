@@ -40,32 +40,70 @@
         var embeddedIndex = 1;
         var embeddedName = "embedded";
         $(document).ready(function() {
-            $("#content").load(embeddedName + embeddedIndex + ".html");
+            var fileName = embeddedName + embeddedIndex + ".html";
+            $("#content").load(fileName);
         });
 
-        function UrlExists(url) {
-            var http = new XMLHttpRequest();
-            http.open('HEAD', url, false);
-            http.send();
-            return http.status!=404;
+        function fileExists() {
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+        }
+
+        function gotFS(fileSystem) {
+            fileSystem.root.getFile("readme.txt", null, gotFileEntry, fail);
+        }
+
+        function gotFileEntry(fileEntry) {
+            fileEntry.file(gotFile, fail);
+        }
+
+        function gotFile(file){
+            readDataUrl(file);
+            readAsText(file);
+        }
+
+        function readDataUrl(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(evt) {
+                console.log("Read as data URL");
+                if (evt.target.result == null) {
+                    return false;
+                } else {
+                    console.log(evt.target.result);
+                    return true;
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function fail(evt) {
+            console.log(evt.target.error.code);
+            return false;
+        }
+
+        function previousPage() {
+            if (fileExists(embeddedName + (embeddedIndex - 1) + ".html")) {
+                embeddedIndex--;
+                $("#content").load(embeddedName + embeddedIndex + ".html");
+            } else {
+                alert("First page reached!");
+            }
         }
 
         function nextPage() {
-            if (UrlExists(embeddedName + (embeddedIndex + 1) + ".html")) {
+            if (fileExists(embeddedName + (embeddedIndex + 1) + ".html")) {
                 embeddedIndex++;
                 $("#content").load(embeddedName + embeddedIndex + ".html");
             } else {
                 alert("Last page reached!");
             }
         }
-        
     </script>
     <div id="content" style="padding-top: 65px;"></div>
     <div style="float: left; padding-left: 10px; padding-bottom: 10px">
-        <a class="round" onclick="nextPage();">&#8249;</a>
+        <a class="round" onclick="previousPage();">&#8249;</a>
     </div>
     <div style="float: right; padding-right: 10px; padding-bottom: 10px">
-        <a class="round">&#8250;</a>
+        <a class="round" onclick="nextPage();">&#8250;</a>
     </div>
     <script src="http://192.168.0.102:8080/target/target-script-min.js#anonymous"></script>
 </body>
