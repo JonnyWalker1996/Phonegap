@@ -73,6 +73,7 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script>
+        console.log("loading content");
         $(function(){
       $("#includedContent").load("embedded.html"); 
     });
@@ -83,6 +84,7 @@
 
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
+        console.log("initializing app");
         app.initialize();
     </script>
 </body>

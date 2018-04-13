@@ -3,12 +3,12 @@
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/index.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="js/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://192.168.0.102:8080/target/target-script-min.js#anonymous"></script>
 </head>
 <body>
 
@@ -36,75 +36,18 @@
         </div>
       </div>
     </nav>
+    <script type="text/javascript" src="js/index.js"></script>
     <script>
-        var embeddedIndex = 1;
-        var embeddedName = "embedded";
-        $(document).ready(function() {
-            var fileName = embeddedName + embeddedIndex + ".html";
-            $("#content").load(fileName);
-        });
-
-        function fileExists() {
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-        }
-
-        function gotFS(fileSystem) {
-            fileSystem.root.getFile("readme.txt", null, gotFileEntry, fail);
-        }
-
-        function gotFileEntry(fileEntry) {
-            fileEntry.file(gotFile, fail);
-        }
-
-        function gotFile(file){
-            readDataUrl(file);
-            readAsText(file);
-        }
-
-        function readDataUrl(file) {
-            var reader = new FileReader();
-            reader.onloadend = function(evt) {
-                console.log("Read as data URL");
-                if (evt.target.result == null) {
-                    return false;
-                } else {
-                    console.log(evt.target.result);
-                    return true;
-                }
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function fail(evt) {
-            console.log(evt.target.error.code);
-            return false;
-        }
-
-        function previousPage() {
-            if (fileExists(embeddedName + (embeddedIndex - 1) + ".html")) {
-                embeddedIndex--;
-                $("#content").load(embeddedName + embeddedIndex + ".html");
-            } else {
-                alert("First page reached!");
-            }
-        }
-
-        function nextPage() {
-            if (fileExists(embeddedName + (embeddedIndex + 1) + ".html")) {
-                embeddedIndex++;
-                $("#content").load(embeddedName + embeddedIndex + ".html");
-            } else {
-                alert("Last page reached!");
-            }
-        }
+        console.log("initializing app");
+        app.initialize();
     </script>
     <div id="content" style="padding-top: 65px;"></div>
     <div style="float: left; padding-left: 10px; padding-bottom: 10px">
-        <a class="round" onclick="previousPage();">&#8249;</a>
+        <a id="previousButton" class="round">&#8249;</a>
     </div>
     <div style="float: right; padding-right: 10px; padding-bottom: 10px">
-        <a class="round" onclick="nextPage();">&#8250;</a>
+        <a id="nextButton" class="round">&#8250;</a>
     </div>
-    <script src="http://192.168.0.102:8080/target/target-script-min.js#anonymous"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 </body>
 </html>
